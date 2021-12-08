@@ -4,10 +4,11 @@
 <template>
   <div class="layout">
      <Layout>
-       <Content :style="{margin: '10px 0 0', background: '#fff', minHeight: '500px'}">
-       <Row>
-         <Button icon="md-download" :loading="exportLoading" @click="exportExcel">导出文件</Button>
-       </Row>
+        <Content :style="{margin: '10px 0 0', background: '#fff', minHeight: '500px'}">
+        <Row class="row-style">
+          <Button icon="md-download" :loading="exportLoading" @click="exportExcel">导出文件</Button>
+        </Row>
+        <day-select @change_select="get_select_alarm_info"></day-select>
     <Card>
         <Table size="small"
                :columns="columns"
@@ -30,7 +31,13 @@ import { getAlarmInfo, getExportAlarmInfo } from '@/api/system'
 import { hasOneOf, formatDate } from '@/libs/tools'
 import excel from '@/libs/excel'
 import { Button, Table, Modal, Message, Tag } from 'iview'
+
+import daySelect from '_c/content'
 export default {
+  components:{
+    // 增加日期选择器
+    daySelect
+  },
   data () {
     return {
       show: false,
@@ -144,27 +151,34 @@ export default {
         console.log('getExportAlarmInfo res的值是：', res);
         this.exportData = res.data;
       })
+    },
+    get_select_alarm_info(){
+      console.log('收到来自子组件的信息');
     }
-  }
+  },
 }
 </script>
-<style>
-.demo-drawer-footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border-top: 1px solid #e8e8e8;
-  padding: 10px 16px;
-  text-align: right;
-  background: #fff;
-}
-.ivu-table .demo-table-info-cell-danger {
-  background-color: #d40f35;
-  color: #fff;
-}
-.ivu-table .demo-table-info-cell-mormal {
-  background-color: #22d489;
-  color: #fff;
+<style scoped>
+/*.demo-drawer-footer {*/
+/*  width: 100%;*/
+/*  position: absolute;*/
+/*  bottom: 0;*/
+/*  left: 0;*/
+/*  border-top: 1px solid #e8e8e8;*/
+/*  padding: 10px 16px;*/
+/*  text-align: right;*/
+/*  background: #fff;*/
+/*}*/
+/*.ivu-table .demo-table-info-cell-danger {*/
+/*  background-color: #d40f35;*/
+/*  color: #fff;*/
+/*}*/
+/*.ivu-table .demo-table-info-cell-mormal {*/
+/*  background-color: #22d489;*/
+/*  color: #fff;*/
+/*}*/
+.row-style {
+  float: left;
+  padding: 0 5px 0 0;
 }
 </style>
