@@ -152,8 +152,12 @@ export default {
         this.exportData = res.data;
       })
     },
-    get_select_alarm_info(){
-      console.log('收到来自子组件的信息');
+    get_select_alarm_info(val){
+      console.log('收到来自子组件的信息:', val);
+      getExportAlarmInfo(`day=${val}`).then(res => {
+        console.log('getExportAlarmInfo res的值是：', res);
+        this.exportData = res.data;
+      })
     }
   },
 }
