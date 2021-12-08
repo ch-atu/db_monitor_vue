@@ -12,13 +12,12 @@ src/config/index.js
 baseUrl:
     dev: 测试
     pro: 线上
-示例API地址：47.100.119.84:43278
 
 2. 安装依赖包yarn/npm
-yarn install
+npm install
 
 3. 开发环境运行yarn/npm
-yarn run dev
+npm run dev
 ```
 
 ## 编译
@@ -26,7 +25,7 @@ yarn run dev
 > dist
 
 ```bush
-yarn build
+npm build
 ```
 
 将dist文件夹部署到nginx即可
