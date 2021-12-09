@@ -101,10 +101,16 @@ export default {
           render: (h, params) => {
             const maxmemory = Number(params.row.maxmemory / 1024 / 1024).toFixed(2)
             const used_memory = params.row.used_memory
-            if (maxmemory > 0) {
+            if (maxmemory >= 0) {
               var memory_rate = Number(used_memory / maxmemory * 100).toFixed(2)
+              console.log('memory_rate:', memory_rate, typeof memory_rate);
+            }
+            if (memory_rate === 'Infinity') {
+              console.log('Infinity执行了');
+              return h('i-progress', { props: { percent: 100 } }, '无限制')
             }
             if (memory_rate > 80) {
+              console.log('一锤八十');
               return h('i-progress', { props: { percent: memory_rate } }, memory_rate + '%')
             }
             if (memory_rate > 60 && memory_rate < 80) {
@@ -229,7 +235,7 @@ export default {
       getRedisStatList(parameter).then(res => {
         this.data = res.data.results
         this.count = res.data.count
-        console.log(this.data)
+        console.log('get_redis_stat_list ', this.data)
       }).catch(err => {
         this.$Message.error(`获取redis资源信息错误 ${err}`)
       })
