@@ -197,7 +197,7 @@ export default {
         {
           title: '操作',
           key: 'action',
-          width: 200,
+          width: 160,
           align: 'center',
           render: (h, params) => {
             return h('div', [
@@ -217,21 +217,21 @@ export default {
                   }
                 }
               }, '详情'),
-              h('Button', {
-                props: {
-                  type: 'success',
-                  size: 'small'
-                },
-                style: {
-                  marginRight: '5px',
-                  display: (this.updateAccessAll !== true) ? 'none' : 'inline-block'
-                },
-                on: {
-                  click: () => {
-                    this.update(params.index)
-                  }
-                }
-              }, '编辑'),
+              // h('Button', {
+              //   props: {
+              //     type: 'success',
+              //     size: 'small'
+              //   },
+              //   style: {
+              //     marginRight: '5px',
+              //     display: (this.updateAccessAll !== true) ? 'none' : 'inline-block'
+              //   },
+              //   on: {
+              //     click: () => {
+              //       this.update(params.index)
+              //     }
+              //   }
+              // }, '编辑'),
               h('Poptip', {
                 props: {
                   confirm: true,

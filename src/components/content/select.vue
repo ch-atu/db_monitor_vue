@@ -9,16 +9,22 @@ export default {
     return {
       cityList: [
         {
+          value: '0',
+          label: '今天'
+        },{
           value: '1',
-          label: '最近1天'
+          label: '昨天'
         },
         {
           value: '7',
-          label: '最近1周'
+          label: '最近一周'
         },
         {
           value: '30',
-          label: '最近1个月'
+          label: '最近一个月'
+        },{
+          value: '365',
+          label: '最近一年'
         },
       ],
       model8: ''

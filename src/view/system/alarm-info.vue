@@ -5,23 +5,21 @@
   <div class="layout">
      <Layout>
         <Content :style="{margin: '10px 0 0', background: '#fff', minHeight: '500px'}">
-        <Row class="row-style">
-          <Button icon="md-download" :loading="exportLoading" @click="exportExcel">导出文件</Button>
-        </Row>
-        <day-select @change_select="get_select_alarm_info"></day-select>
-    <Card>
-        <Table size="small"
-               :columns="columns"
-               :data="data">
-        </Table>
-        <br>
-        <Page :total="count"
-              :page_size='page_size'
-              @on-change="get_alarm_info_parameter"
-              show-elevator
-              show-total />
-    </Card>
-            </Content>
+         <Button icon="md-download" :loading="exportLoading" @click="exportExcel">导出文件</Button>
+         <day-select style="margin-left: 5px" @change_select="get_select_alarm_info"></day-select>
+          <Card>
+              <Table size="small"
+                     :columns="columns"
+                     :data="data">
+              </Table>
+              <br>
+              <Page :total="count"
+                    :page_size='page_size'
+                    @on-change="get_alarm_info_parameter"
+                    show-elevator
+                    show-total />
+          </Card>
+        </Content>
      </Layout>
   </div>
 </template>
@@ -108,15 +106,6 @@ export default {
     get_alarm_info (parameter) {
       console.log('parameter的值是：',parameter);
       getAlarmInfo(parameter).then(res => {
-        // for (let i = 0; i < res.data.results.length; i++) {
-        //   // console.log('遍历每一个：', res.data.results[i]);
-        //   // res.data.results[i].alarm_time = res.data.results[i].alarm_time.replace('T', ' ')
-        //   let new_date = new Date(res.data.results[i].alarm_time.replace('T', ' '))
-        //   // console.log('新日期格式为:', new_date)
-        //   new_date = formatDate(new_date, 'yyyy-MM-dd hh:mm:ss')
-        //   // console.log('新日期格式为___:', new_date)
-        //   res.data.results[i].alarm_time = new_date
-        // }
         this.data = res.data.results
         this.count = res.data.count
         // console.log('hello!!!');
@@ -143,11 +132,11 @@ export default {
         excel.export_array_to_excel(params)
         this.exportLoading = false
       } else {
-        this.$Message.info('表格数据不能为空！')
+        this.$Message.info('无数据！表格数据不能为空！')
       }
     },
     get_export_alarm_info(){
-      getExportAlarmInfo().then(res => {
+      getExportAlarmInfo(`day=${"0"}`).then(res => {
         console.log('getExportAlarmInfo res的值是：', res);
         this.exportData = res.data;
       })
@@ -181,8 +170,5 @@ export default {
 /*  background-color: #22d489;*/
 /*  color: #fff;*/
 /*}*/
-.row-style {
-  float: left;
-  padding: 0 5px 0 0;
-}
+
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Row :gutter="10">
-      <i-col :md="24" :lg="6" style="margin-bottom: 20px">
+      <i-col :md="24" :lg="8" style="margin-bottom: 20px">
         <Card shadow>
           <p slot="title" style="font-size: larger">
             <Icon type="ios-pie"></Icon>
@@ -17,23 +17,7 @@
           ></chart-pie3>
         </Card>
       </i-col>
-      <i-col :md="24" :lg="6" style="margin-bottom: 20px">
-        <Card shadow>
-          <p slot="title" style="font-size: larger">
-            <Icon type="ios-pie"></Icon>
-            Oracle数据库
-          </p>
-          <p style="font-size: small; color: black">
-            总数量：{{ this.oracle_count }}
-          </p>
-          <chart-pie3
-            style="height: 160px"
-            :value="OracleData"
-            text="Oracle"
-          ></chart-pie3>
-        </Card>
-      </i-col>
-      <i-col :md="24" :lg="6" style="margin-bottom: 20px">
+      <i-col :md="24" :lg="8" style="margin-bottom: 20px">
         <Card shadow>
           <p slot="title" style="font-size: larger">
             <Icon type="ios-pie"></Icon>
@@ -49,7 +33,7 @@
           ></chart-pie3>
         </Card>
       </i-col>
-      <i-col :md="24" :lg="6" style="margin-bottom: 20px">
+      <i-col :md="24" :lg="8" style="margin-bottom: 20px">
         <Card shadow>
           <p slot="title" style="font-size: larger">
             <Icon type="ios-pie"></Icon>
@@ -83,7 +67,26 @@
           </Scroll>
         </card>
       </i-col>
+
+<!--      <i-col :md="24" :lg="6" style="margin-bottom: 20px">-->
+<!--        <Card shadow v-show="false">-->
+<!--          <p slot="title" style="font-size: larger">-->
+<!--            <Icon type="ios-pie"></Icon>-->
+<!--            Oracle数据库-->
+<!--          </p>-->
+<!--          <p style="font-size: small; color: black">-->
+<!--            总数量：{{ this.oracle_count }}-->
+<!--          </p>-->
+<!--          <chart-pie3-->
+<!--            style="height: 160px"-->
+<!--            :value="OracleData"-->
+<!--            text="Oracle"-->
+<!--          ></chart-pie3>-->
+<!--        </Card>-->
+<!--      </i-col>-->
+
     </Row>
+
   </div>
 </template>
 
