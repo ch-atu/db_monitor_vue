@@ -134,6 +134,8 @@ export default {
             const misses = params.row.misses
             const all = hits + misses
             var hits_rate = -1
+            console.log('hits的值是：', hits);
+            console.log('misses的值是：', misses);
             if (all > 0) {
               hits_rate = Number(hits / all).toFixed(2)
             }
