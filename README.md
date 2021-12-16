@@ -11,7 +11,7 @@
 src/config/index.js
 baseUrl:
     dev: 测试
-    pro: 线上
+    pro: 线上 
 
 2. 安装依赖包yarn/npm
 npm install
