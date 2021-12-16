@@ -90,6 +90,15 @@ export const deleteLinux = id => {
   })
 }
 
+export const deleteLinuxStat = host => {
+  return axios.request(
+    {
+      url: `/linux/api/del_linux_stat/${host}`,
+      method: 'delete'
+    }
+  )
+}
+
 export const getRedisList = parameter => {
   return axios.request({
     url: `/assets/api/redis?${parameter}`,

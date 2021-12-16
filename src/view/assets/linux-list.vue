@@ -274,7 +274,7 @@
 </template>
 
 <script>
-import { getLinuxList, createLinux, updateLinux, deleteLinux } from '@/api/assets'
+import { getLinuxList, createLinux, updateLinux, deleteLinux, deleteLinuxStat } from '@/api/assets'
 import { hasOneOf } from '@/libs/tools'
 import { Tag } from 'iview'
 export default {
@@ -349,6 +349,7 @@ export default {
           width: 200,
           align: 'center',
           render: (h, params) => {
+            console.log('操作中的params的值是：', params)
             return h('div', [
               h('Button', {
                 props: {
@@ -393,7 +394,7 @@ export default {
                 },
                 on: {
                   'on-ok': () => {
-                    this.remove(params.index, params.row.id)
+                    this.remove(params.index, params.row.id, params.row.host)
                   }
                 }
               }, [h('Button', {
@@ -505,7 +506,7 @@ export default {
       getLinuxList(parameter).then(res => {
         this.data = res.data.results
         this.count = res.data.count
-        console.log(this.data)
+        console.log('get_linux_list', this.data)
       }).catch(err => {
         this.$Message.error(`获取linux资源信息错误 ${err}`)
       })
@@ -589,10 +590,13 @@ export default {
       this.formData.alarm_disk = '1'
       this.formData.alarm_alert_log = '1'
     },
-    remove (index, id) {
-      console.log(index, id)
+    remove (index, id, host) {
+      console.log(index, id, host)
       deleteLinux(id).then(res => {
-        console.log(res)
+        console.log('deleteLinux:', res)
+        deleteLinuxStat(host).then(res => {
+          console.log('deleteLinuxStat:', res)
+        })
         this.$Message.success('删除linux配置成功!')
         this.data.splice(index, 1)
       }).catch(err => {
