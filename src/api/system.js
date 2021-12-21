@@ -36,36 +36,11 @@ export const getAlarmInfo = parameter => {
   })
 }
 
-//新增日志导出功能
+// 新增日志导出功能
 export const getExportAlarmInfo = parameter => {
   return axios.request({
-    url:`/system/api/export-alarm-info?${parameter}`,
-    method:'get'
-  })
-}
-
-
-export const setupOracleRac = data => {
-  return axios.request({
-    url: '/system/api/oracle-rac-setup',
-    data: data,
-    method: 'post'
-  })
-}
-
-export const setupOracleRacOneNode = data => {
-  return axios.request({
-    url: '/system/api/oracle-rac-onenode-setup',
-    data: data,
-    method: 'post'
-  })
-}
-
-export const setupOracleOneNode = data => {
-  return axios.request({
-    url: '/system/api/oracle-onenode-setup',
-    data: data,
-    method: 'post'
+    url: `/system/api/export-alarm-info?${parameter}`,
+    method: 'get'
   })
 }
 

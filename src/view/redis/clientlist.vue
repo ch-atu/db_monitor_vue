@@ -151,10 +151,6 @@ export default {
       }).catch(err => {
         this.$Message.error(`获取redis慢查询信息错误 ${err}`)
       })
-    },
-    get_oracle_parameter (parameter) {
-      console.log(parameter)
-      this.get_redis_clientlist(`tags=${this.$route.params.tags}&page=${parameter}`)
     }
   },
   destroyed () {

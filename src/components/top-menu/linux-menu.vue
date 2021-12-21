@@ -1,5 +1,5 @@
 <template>
-  <Menu mode="horizontal" theme="light" :active-name="this.value" ref="oracle">
+  <Menu mode="horizontal" theme="light" :active-name="this.value" ref="linux">
     <div class="layout-nav">
       <MenuItem name="1" :to="this.view" >
         <Icon type="ios-navigate"></Icon>

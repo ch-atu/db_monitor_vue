@@ -79,7 +79,7 @@ export default {
     },
     get_redis_immediatestats (parameter) {
       getRedisImmediateStats(parameter).then(res => {
-        debugger
+        // debugger
         var allData = res.data
         for (const section in allData) {
           const sectionData = allData[section]
@@ -97,10 +97,6 @@ export default {
       }).catch(err => {
         this.$Message.error(`获取Redis配置信息错误 ${err}`)
       })
-    },
-    get_oracle_parameter (parameter) {
-      console.log(parameter)
-      this.get_redis_immediatestats(`tags=${this.$route.params.tags}&page=${parameter}`)
     }
   },
   destroyed () {

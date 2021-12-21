@@ -100,10 +100,6 @@ export default {
       }).catch(err => {
         this.$Message.error(`获取Redis配置信息错误 ${err}`)
       })
-    },
-    get_oracle_parameter (parameter) {
-      console.log(parameter)
-      this.get_redis_config(`tags=${this.$route.params.tags}&page=${parameter}`)
     }
   },
   destroyed () {

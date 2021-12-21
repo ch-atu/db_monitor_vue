@@ -1,5 +1,5 @@
 <template>
-  <Menu mode="horizontal" theme="light" :active-name="this.value" ref="oracle">
+  <Menu mode="horizontal" theme="light" :active-name="this.value" ref="mysql">
     <div class="layout-nav">
       <MenuItem name="1" :to="this.view" >
         <Icon type="ios-navigate"></Icon>
@@ -13,18 +13,20 @@
         <Icon type="ios-pulse"></Icon>
         Innodb
       </MenuItem>
-      <MenuItem name="4" :to="this.alertlog">
-        <Icon type="ios-paper"></Icon>
-        日志解析
-      </MenuItem>
-      <MenuItem name="5" :to="this.slowquerylog">
-        <Icon type="md-sad"></Icon>
-        慢查询
-      </MenuItem>
-      <MenuItem name="6" :to="this.view">
-        <Icon type="ios-sync"></Icon>
-        复制
-      </MenuItem>
+
+<!--      todo ========未开放功能===========-->
+<!--      <MenuItem name="4" :to="this.alertlog">-->
+<!--        <Icon type="ios-paper"></Icon>-->
+<!--        日志解析-->
+<!--      </MenuItem>-->
+<!--      <MenuItem name="5" :to="this.slowquerylog">-->
+<!--        <Icon type="md-sad"></Icon>-->
+<!--        慢查询-->
+<!--      </MenuItem>-->
+<!--      <MenuItem name="6" :to="this.view">-->
+<!--        <Icon type="ios-sync"></Icon>-->
+<!--        复制-->
+<!--      </MenuItem>-->
     </div>
   </Menu>
 </template>
@@ -40,9 +42,11 @@ export default {
     return {
       view: '',
       myisam: '',
-      innodb: '',
-      alertlog: '',
-      slowquerylog: ''
+      innodb: ''
+
+      // todo 未开放功能
+      // alertlog: '',
+      // slowquerylog: ''
     }
   },
   methods: {
@@ -50,8 +54,10 @@ export default {
       this.view = '/mysql/' + this.tags + '/view'
       this.myisam = '/mysql/' + this.tags + '/myisam'
       this.innodb = '/mysql/' + this.tags + '/innodb'
-      this.alertlog = '/mysql/' + this.tags + '/alert-log'
-      this.slowquerylog = '/mysql/' + this.tags + '/slowquery-log'
+
+      // todo 未开放功能
+      // this.alertlog = '/mysql/' + this.tags + '/alert-log'
+      // this.slowquerylog = '/mysql/' + this.tags + '/slowquery-log'
     }
   },
   mounted () {

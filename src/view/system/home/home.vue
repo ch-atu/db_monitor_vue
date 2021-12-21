@@ -68,23 +68,6 @@
         </card>
       </i-col>
 
-<!--      <i-col :md="24" :lg="6" style="margin-bottom: 20px">-->
-<!--        <Card shadow v-show="false">-->
-<!--          <p slot="title" style="font-size: larger">-->
-<!--            <Icon type="ios-pie"></Icon>-->
-<!--            Oracle数据库-->
-<!--          </p>-->
-<!--          <p style="font-size: small; color: black">-->
-<!--            总数量：{{ this.oracle_count }}-->
-<!--          </p>-->
-<!--          <chart-pie3-->
-<!--            style="height: 160px"-->
-<!--            :value="OracleData"-->
-<!--            text="Oracle"-->
-<!--          ></chart-pie3>-->
-<!--        </Card>-->
-<!--      </i-col>-->
-
     </Row>
 
   </div>
@@ -95,7 +78,6 @@ import { CountTo } from '_c/count-to'
 import { ChartPie, ChartBar, ChartPie3 } from '_c/charts'
 import { getAlarmInfo } from '@/api/system'
 import { getLinuxStatList } from '@/api/linux'
-import { getOracleStatList } from '@/api/oracle'
 import { getMysqlStatList } from '@/api/mysql'
 import { getRedisStatList } from '@/api/redis'
 import { statuscheck } from '@/libs/tools'
@@ -111,16 +93,13 @@ export default {
   data () {
     return {
       LinuxData: [],
-      OracleData: [],
       MysqlData: [],
       RedisData: [],
       alarminfoList: [],
       linuxstatList: [],
-      oraclestatList: [],
       mysqlstatList: [],
       alarm_count: null,
       linux_count: null,
-      oracle_count: null,
       mysql_count: null,
       redis_count: null
     }
@@ -128,13 +107,11 @@ export default {
   created () {
     this.get_alarm_info()
     this.get_linux_stat_list()
-    this.get_oracle_stat_list()
     this.get_mysql_stat_list()
     this.get_redis_stat_list()
     this.timer = setInterval(() => {
       this.get_alarm_info()
       this.get_linux_stat_list()
-      this.get_oracle_stat_list()
       this.get_mysql_stat_list()
       this.get_redis_stat_list()
     }, 1000 * 20)
@@ -161,18 +138,6 @@ export default {
         })
         .catch((err) => {
           this.$Message.error(`获取linux状态列表错误 ${err}`)
-        })
-    },
-    get_oracle_stat_list (parameter) {
-      getOracleStatList(parameter)
-        .then((res) => {
-          this.oraclestatList = res.data.results
-          this.oracle_count = res.data.count
-          this.OracleData = statuscheck(this.oraclestatList)
-          console.log(this.data)
-        })
-        .catch((err) => {
-          this.$Message.error(`获取oracle状态列表错误 ${err}`)
         })
     },
     get_mysql_stat_list (parameter) {

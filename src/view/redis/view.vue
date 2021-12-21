@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import { hasOneOf, formatDate } from '@/libs/tools'
 import { RedisMenu } from '_c/top-menu'
 import InforCard from '_c/info-card'
 import { CountTo, CountToInt } from '_c/count-to'
@@ -204,11 +205,14 @@ export default {
         this.connected_clients = this.redisinfo.connected_clients
         this.hits_all = this.redisinfo.hits_all
         this.misses_all = this.redisinfo.misses_all
-        debugger
+        // debugger
         if (this.hits_all + this.misses_all > 0) {
-          this.hit_rate = Number(this.hits_all * 100 / (this.hits_all + this.misses_all)).toFixed(2)
+          this.hit_rate = Number(
+            Number(this.hits_all * 100 / (this.hits_all + this.misses_all)).toFixed(2)
+          )
         }
-        console.log(this.redisinfo)
+        console.log('this.redisinfo的值是：', this.redisinfo)
+        console.log('this.hit_rate的值是：', this.hit_rate, typeof this.hit_rate)
       }).catch(err => {
         this.$Message.error(`获取redis资源信息错误 ${err}`)
       })

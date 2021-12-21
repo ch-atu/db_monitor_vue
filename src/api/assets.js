@@ -1,35 +1,5 @@
 import axios from '@/libs/api.request'
 
-export const getOracleList = parameter => {
-  return axios.request({
-    url: `/assets/api/oracle?${parameter}`,
-    method: 'get'
-  })
-}
-
-export const createOracle = data => {
-  return axios.request({
-    url: '/assets/api/oracle',
-    data: data,
-    method: 'post'
-  })
-}
-
-export const updateOracle = (id, data) => {
-  return axios.request({
-    url: `/assets/api/oracle/${id}`,
-    data: data,
-    method: 'PUT'
-  })
-}
-
-export const deleteOracle = id => {
-  return axios.request({
-    url: `/assets/api/oracle/${id}`,
-    method: 'delete'
-  })
-}
-
 export const getMysqlList = parameter => {
   return axios.request({
     url: `/assets/api/mysql?${parameter}`,

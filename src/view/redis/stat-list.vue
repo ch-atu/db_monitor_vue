@@ -103,14 +103,14 @@ export default {
             const used_memory = params.row.used_memory
             if (maxmemory >= 0) {
               var memory_rate = Number(used_memory / maxmemory * 100).toFixed(2)
-              console.log('memory_rate:', memory_rate, typeof memory_rate);
+              console.log('memory_rate:', memory_rate, typeof memory_rate)
             }
             if (memory_rate === 'Infinity') {
-              console.log('Infinity执行了');
+              console.log('Infinity执行了')
               return h('i-progress', { props: { percent: 100 } }, '无限制')
             }
             if (memory_rate > 80) {
-              console.log('一锤八十');
+              console.log('一锤八十')
               return h('i-progress', { props: { percent: memory_rate } }, memory_rate + '%')
             }
             if (memory_rate > 60 && memory_rate < 80) {
@@ -124,46 +124,6 @@ export default {
           title: '连接数',
           key: 'connected_clients',
           width: 100
-        },
-        {
-          title: '命中率',
-          key: 'hits,misses',
-          width: 110,
-          render: (h, params) => {
-            const hits = params.row.hits
-            const misses = params.row.misses
-            const all = hits + misses
-            var hits_rate = -1
-            console.log('hits的值是：', hits);
-            console.log('misses的值是：', misses);
-            if (all > 0) {
-              hits_rate = Number(hits / all).toFixed(2)
-            }
-            if (hits_rate !== -1 && hits_rate < 0.6) {
-              return h(Tag, { props: { color: 'error' } }, hits_rate)
-            }
-            if (hits_rate !== -1 && hits_rate > 0.6 && hits_rate < 1) {
-              return h(Tag, { props: { color: 'warning' } }, hits_rate)
-            } else {
-              return h(Tag, { props: { color: 'success' } }, hits_rate)
-            }
-          }
-        },
-        {
-          title: '碎片率',
-          key: 'mem_fragmentation_ratio',
-          width: 110,
-          render: (h, params) => {
-            const mem_fragmentation_ratio = params.row.mem_fragmentation_ratio
-            if (mem_fragmentation_ratio < 1) {
-              return h(Tag, { props: { color: 'error' } }, mem_fragmentation_ratio)
-            }
-            if (mem_fragmentation_ratio > 1.5) {
-              return h(Tag, { props: { color: 'warning' } }, mem_fragmentation_ratio)
-            } else {
-              return h(Tag, { props: { color: 'success' } }, mem_fragmentation_ratio + '%')
-            }
-          }
         },
         {
           title: '角色',
@@ -194,6 +154,50 @@ export default {
             )
           }
         }
+
+        // todo 未开放功能
+        // {
+        //   title: '命中率',
+        //   key: 'hits,misses',
+        //   width: 110,
+        //   render: (h, params) => {
+        //     const hits = params.row.hits
+        //     const misses = params.row.misses
+        //     const all = hits + misses
+        //     var hits_rate = -1
+        //     console.log('hits的值是：', hits);
+        //     console.log('misses的值是：', misses);
+        //     if (all > 0) {
+        //       hits_rate = Number(hits / all).toFixed(2)
+        //     }
+        //     if (hits_rate !== -1 && hits_rate < 0.6) {
+        //       return h(Tag, { props: { color: 'error' } }, hits_rate)
+        //     }
+        //     if (hits_rate !== -1 && hits_rate > 0.6 && hits_rate < 1) {
+        //       return h(Tag, { props: { color: 'warning' } }, hits_rate)
+        //     } else {
+        //       return h(Tag, { props: { color: 'success' } }, hits_rate)
+        //     }
+        //   }
+        // },
+
+        // todo 未开放功能
+        // {
+        //   title: '碎片率',
+        //   key: 'mem_fragmentation_ratio',
+        //   width: 110,
+        //   render: (h, params) => {
+        //     const mem_fragmentation_ratio = params.row.mem_fragmentation_ratio
+        //     if (mem_fragmentation_ratio < 1) {
+        //       return h(Tag, { props: { color: 'error' } }, mem_fragmentation_ratio)
+        //     }
+        //     if (mem_fragmentation_ratio > 1.5) {
+        //       return h(Tag, { props: { color: 'warning' } }, mem_fragmentation_ratio)
+        //     } else {
+        //       return h(Tag, { props: { color: 'success' } }, mem_fragmentation_ratio + '%')
+        //     }
+        //   }
+        // },
       ],
       data: [],
       count: 0,

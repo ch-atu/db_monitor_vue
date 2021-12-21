@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
      <Layout>
-       <linux-menu :value="'2'" :tags="this.Tags" ></linux-menu>
+       <linux-menu :value="'2'" :tags="this.Tags"></linux-menu>
             <Content :style="{margin: '10px 0 0', background: '#fff', minHeight: '500px'}">
                <Row>
                  <Card>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import LinuxMenu from '_c/top-menu'
+import { LinuxMenu } from '_c/top-menu'
 import InforCard from '_c/info-card'
 import { formatDate } from '@/libs/tools'
 import { getLinuxDisk, getLinuxIoStatHis } from '@/api/linux'
@@ -162,10 +162,10 @@ export default {
     this.Tags = this.$route.params.tags
     this.timer = setInterval(() => {
       this.get_linux_disk(`tags=${this.$route.params.tags} `)
-    //   this.get_linux_io_stat_his(`tags=${this.$route.params.tags} `)
-    // }, 1000 * 20)
+      //   this.get_linux_io_stat_his(`tags=${this.$route.params.tags} `)
+      // }, 1000 * 20)
       this.get_linux_io_stat_his(`tags=${this.$route.params.tags} `)
-    }, 1000*60*2)
+    }, 1000 * 60 * 2)
   },
   methods: {
     init () {

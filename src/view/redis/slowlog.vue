@@ -42,7 +42,7 @@ export default {
           key: 'start_time',
           width: 160,
           render: (h, params) => {
-            debugger
+            // debugger
             const timestamp = params.row.start_time
             const start_time = getDate(timestamp, 'year')
             return h('div', start_time
@@ -99,10 +99,6 @@ export default {
       }).catch(err => {
         this.$Message.error(`获取redis慢查询信息错误 ${err}`)
       })
-    },
-    get_oracle_parameter (parameter) {
-      console.log(parameter)
-      this.get_redis_slowlog(`tags=${this.$route.params.tags}&page=${parameter}`)
     }
   },
   destroyed () {

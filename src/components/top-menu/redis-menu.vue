@@ -9,10 +9,6 @@
         <Icon type="ios-body"></Icon>
         实时状态
       </MenuItem>
-      <MenuItem name="3" :to="this.slowlog" >
-        <Icon type="md-sad"></Icon>
-        慢查询分析
-      </MenuItem>
       <MenuItem name="4" :to="this.config">
         <Icon type="ios-settings-outline"></Icon>
         配置查询
@@ -21,14 +17,20 @@
         <Icon type="ios-contacts"></Icon>
         连接信息
       </MenuItem>
-      <MenuItem name="6" :to="this.commandstats">
-        <Icon type="ios-pulse"></Icon>
-        命令曲线
-      </MenuItem>
-      <MenuItem name="7" :to="this.alertlog">
-        <Icon type="ios-paper"></Icon>
-        后台日志
-      </MenuItem>
+
+<!--      todo =======未开放功能=========-->
+<!--      <MenuItem name="3" :to="this.slowlog" >-->
+<!--        <Icon type="md-sad"></Icon>-->
+<!--        慢查询分析-->
+<!--      </MenuItem>-->
+<!--      <MenuItem name="6" :to="this.commandstats">-->
+<!--        <Icon type="ios-pulse"></Icon>-->
+<!--        命令曲线-->
+<!--      </MenuItem>-->
+<!--      <MenuItem name="7" :to="this.alertlog">-->
+<!--        <Icon type="ios-paper"></Icon>-->
+<!--        后台日志-->
+<!--      </MenuItem>-->
     </div>
   </Menu>
 </template>
@@ -44,24 +46,28 @@ export default {
     return {
       view: '',
       immediatestats: '',
-      slowlog: '',
       clientlist: '',
-      config: '',
-      alertlog: '',
-      slowquerylog: '',
-      commandstats: ''
+      config: ''
+
+      // todo 未开放功能
+      // slowlog: '',
+      // alertlog: '',
+      // slowquerylog: '',
+      // commandstats: ''
     }
   },
   methods: {
     init () {
       this.view = '/redis/' + this.tags + '/view'
       this.immediatestats = '/redis/' + this.tags + '/immediate-stats'
-      this.slowlog = '/redis/' + this.tags + '/slowlog'
       this.config = '/redis/' + this.tags + '/config'
       this.clientlist = '/redis/' + this.tags + '/clientlist'
-      this.slowquerylog = '/redis/' + this.tags + '/slowquery-log'
-      this.commandstats = '/redis/' + this.tags + '/commandstats'
-      this.alertlog = '/redis/' + this.tags + '/alert-log'
+
+      // todo 未开放功能
+      // this.slowlog = '/redis/' + this.tags + '/slowlog'
+      // this.slowquerylog = '/redis/' + this.tags + '/slowquery-log'
+      // this.commandstats = '/redis/' + this.tags + '/commandstats'
+      // this.alertlog = '/redis/' + this.tags + '/alert-log'
     }
   },
   mounted () {
