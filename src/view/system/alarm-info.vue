@@ -158,7 +158,7 @@ export default {
         // 获取day=xx&page=xx的告警信息
         getExportAlarmInfo(parameter).then(res => {
           // this.exportData = res.data.results
-          console.log('获取页码数的告警信息：', res);
+          console.log('获取页码数的告警信息：', res)
           this.data = res.data.results
           this.count = res.data.count
         }).catch(err => {
@@ -177,7 +177,7 @@ export default {
         this.$Message.error(`获取告警信息错误！${err}`)
       })
       getExcelAlarmInfo(`day=${val}`).then(res => {
-        console.log('告警日志获取：', res);
+        console.log('告警日志获取：', res)
         this.exportData = res.data
       }).catch(err => {
         this.$Message.error(`导出告警信息错误！${err}`)
