@@ -504,6 +504,7 @@ export default {
     },
     get_linux_list (parameter) {
       getLinuxList(parameter).then(res => {
+        console.log('查询的linux数据是：', res);
         this.data = res.data.results
         this.count = res.data.count
         console.log('get_linux_list', this.data)

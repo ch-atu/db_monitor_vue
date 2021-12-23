@@ -101,9 +101,12 @@ export default {
           render: (h, params) => {
             const maxmemory = Number(params.row.maxmemory / 1024 / 1024).toFixed(2)
             const used_memory = params.row.used_memory
+            const memory_rate = Number(used_memory / maxmemory * 100).toFixed(2)
             if (maxmemory >= 0) {
-              var memory_rate = Number(used_memory / maxmemory * 100).toFixed(2)
               console.log('memory_rate:', memory_rate, typeof memory_rate)
+            }
+            if (isNaN(memory_rate)){
+              return h('i-progress', { props: { percent: 0 ,status:'wrong'} })
             }
             if (memory_rate === 'Infinity') {
               console.log('Infinity执行了')

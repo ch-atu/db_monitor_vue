@@ -29,6 +29,7 @@ export const deleteAlarmCconf = id => {
   })
 }
 
+// todo 此接口暂时不用
 export const getAlarmInfo = parameter => {
   return axios.request({
     url: `/system/api/alarm-info?${parameter}`,
