@@ -84,7 +84,7 @@ import { RedisMenu } from '_c/top-menu'
 import InforCard from '_c/info-card'
 import { CountTo, CountToInt } from '_c/count-to'
 import { getRedisStat, getRedisStatHis } from '@/api/redis'
-import { getAlarmInfo } from '@/api/system'
+import { getAlarmInfo, getExportAlarmInfo} from '@/api/system'
 import { ChartPie, SimpleChartPie, ChartLine1, ChartLine2, ChartLine3, ChartLine4 } from '_c/charts'
 
 export default {
@@ -169,12 +169,14 @@ export default {
   created () {
     this.get_redis_stat(`tags=${this.$route.params.tags} `)
     this.get_redis_stat_his(`tags=${this.$route.params.tags} `)
-    this.get_alarm_info(`tags=${this.$route.params.tags} `)
+    // this.get_alarm_info(`tags=${this.$route.params.tags} `)
+    this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=redis `)
     this.Tags = this.$route.params.tags
     this.timer = setInterval(() => {
       this.get_redis_stat(`tags=${this.$route.params.tags} `)
       this.get_redis_stat_his(`tags=${this.$route.params.tags} `)
-      this.get_alarm_info(`tags=${this.$route.params.tags} `)
+      // this.get_alarm_info(`tags=${this.$route.params.tags} `)
+      this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=redis `)
     }, 1000 * 20)
   },
   methods: {
@@ -232,11 +234,20 @@ export default {
         this.$Message.error(`获取redis资源信息错误 ${err}`)
       })
     },
-    get_alarm_info (parameter) {
-      getAlarmInfo(parameter).then(res => {
+    // get_alarm_info (parameter) {
+    //   getAlarmInfo(parameter).then(res => {
+    //     this.alarmData = res.data.results
+    //     this.count = res.data.count
+    //     console.log(this.alarmData)
+    //   }).catch(err => {
+    //     this.$Message.error(`获取告警信息错误 ${err}`)
+    //   })
+    // },
+    get_export_alarm_info (parameter) {
+      getExportAlarmInfo(parameter).then(res => {
         this.alarmData = res.data.results
         this.count = res.data.count
-        console.log(this.alarmData)
+        // console.log(this.alarmData)
       }).catch(err => {
         this.$Message.error(`获取告警信息错误 ${err}`)
       })

@@ -15,7 +15,7 @@
               <br>
               <Page :total="count"
                     :page_size='page_size'
-                    @on-change="get_alarm_info_parameter"
+                    @on-change="get_export_alarm_info_page"
                     show-elevator
                     show-total />
           </Card>
@@ -90,6 +90,7 @@ export default {
       //新增导入文件
       exportLoading: false,
       exportData:null,
+      day:1,
 
     }
   },
@@ -99,25 +100,26 @@ export default {
     }
   },
   created () {
-    this.get_alarm_info()
+    // this.get_alarm_info()
     this.get_export_alarm_info()
   },
   methods: {
-    get_alarm_info (parameter) {
-      console.log('parameter的值是：',parameter);
-      getAlarmInfo(parameter).then(res => {
-        this.data = res.data.results
-        this.count = res.data.count
-        // console.log('hello!!!');
-        console.log('获取到的data数据是', this.data)
-      }).catch(err => {
-        this.$Message.error(`获取告警信息错误 ${err}`)
-      })
-    },
-    get_alarm_info_parameter (parameter) {
-      console.log('get_alarm_info_parameter:', parameter)
-      this.get_alarm_info(`page=${parameter}`)
-    },
+    // get_alarm_info (parameter) {
+    //   console.log('parameter的值是：',parameter);
+    //   getAlarmInfo(parameter).then(res => {
+    //     this.data = res.data.results
+    //     this.count = res.data.count
+    //     // console.log('hello!!!');
+    //     console.log('获取到的data数据是', this.data)
+    //   }).catch(err => {
+    //     this.$Message.error(`获取告警信息错误 ${err}`)
+    //   })
+    // },
+    // get_alarm_info_parameter (parameter) {
+    //   console.log('get_alarm_info_parameter:', parameter)
+    //   this.get_alarm_info(`page=${parameter}`)
+    // },
+
     // 新增导入表格
     exportExcel () {
       if (this.exportData.length) {
@@ -135,19 +137,44 @@ export default {
         this.$Message.info('无数据！表格数据不能为空！')
       }
     },
-    get_export_alarm_info(){
-      getExportAlarmInfo(`day=${"0"}`).then(res => {
-        console.log('getExportAlarmInfo res的值是：', res);
-        this.exportData = res.data;
+    // 初始化时默认查询当天告警信息 或 获取day=xx&page=xx的告警信息
+    get_export_alarm_info(parameter){
+      // 初始化时默认查询当天告警信息
+      if (parameter===undefined){
+        getExportAlarmInfo(`day=1`).then(res => {
+          this.exportData = res.data.results;
+          this.data = this.exportData
+          this.count = res.data.count
+        }).catch(err => {
+          this.$Message.error(`获取告警信息错误！${err}`)
+        })
+      }
+      else{
+        // 获取day=xx&page=xx的告警信息
+        getExportAlarmInfo(parameter).then(res => {
+          this.exportData = res.data.results;
+          this.data = this.exportData
+          this.count = res.data.count
+        }).catch(err => {
+          this.$Message.error(`获取告警信息错误！${err}`)
+        })
+      }
+    },
+    // 查询选择日期的告警信息
+    get_select_alarm_info(val){
+      this.day = val
+      getExportAlarmInfo(`day=${val}`).then(res => {
+        this.exportData = res.data.results;
+        this.data=this.exportData
+        this.count = res.data.count
+      }).catch(err => {
+        this.$Message.error(`获取告警信息错误！${err}`)
       })
     },
-    get_select_alarm_info(val){
-      console.log('收到来自子组件的信息:', val);
-      getExportAlarmInfo(`day=${val}`).then(res => {
-        console.log('getExportAlarmInfo res的值是：', res);
-        this.exportData = res.data;
-      })
-    }
+    // 页码跳转的事件处理
+    get_export_alarm_info_page (parameter) {
+      this.get_export_alarm_info(`day=${this.day}&page=${parameter}`)
+    },
   },
 }
 </script>

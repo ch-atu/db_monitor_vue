@@ -76,7 +76,7 @@
 <script>
 import { CountTo } from '_c/count-to'
 import { ChartPie, ChartBar, ChartPie3 } from '_c/charts'
-import { getAlarmInfo } from '@/api/system'
+import { getAlarmInfo, getExportAlarmInfo } from '@/api/system'
 import { getLinuxStatList } from '@/api/linux'
 import { getMysqlStatList } from '@/api/mysql'
 import { getRedisStatList } from '@/api/redis'
@@ -105,7 +105,8 @@ export default {
     }
   },
   created () {
-    this.get_alarm_info()
+    // this.get_alarm_info()
+    this.get_export_alarm_info()
     this.get_linux_stat_list()
     this.get_mysql_stat_list()
     this.get_redis_stat_list()
@@ -117,17 +118,26 @@ export default {
     }, 1000 * 20)
   },
   methods: {
-    get_alarm_info (parameter) {
-      getAlarmInfo(parameter)
-        .then((res) => {
+    // get_alarm_info (parameter) {
+    //   getAlarmInfo(parameter)
+    //     .then((res) => {
+    //       this.alarminfoList = res.data.results
+    //       this.alarm_count = res.data.count
+    //       console.log('获取的告警信息列表=======================:', this.alarminfoList)
+    //     })
+    //     .catch((err) => {
+    //       this.$Message.error(`获取告警信息错误 ${err}`)
+    //     })
+    // },
+    get_export_alarm_info(){
+      // 初始化时默认查询当天告警信息
+        getExportAlarmInfo(`day=1`).then(res => {
           this.alarminfoList = res.data.results
           this.alarm_count = res.data.count
-          console.log('获取的告警信息列表=======================:', this.alarminfoList)
+        }).catch(err => {
+          this.$Message.error(`获取告警信息错误！${err}`)
         })
-        .catch((err) => {
-          this.$Message.error(`获取告警信息错误 ${err}`)
-        })
-    },
+      },
     get_linux_stat_list (parameter) {
       getLinuxStatList(parameter)
         .then((res) => {

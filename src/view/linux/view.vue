@@ -66,7 +66,7 @@ import { LinuxMenu } from '_c/top-menu'
 import { hasOneOf, formatDate } from '@/libs/tools'
 import InforCard from '_c/info-card'
 import { getLinuxStat, getLinuxStatHis, getLinuxDisk } from '@/api/linux'
-import { getAlarmInfo } from '@/api/system'
+import { getAlarmInfo, getExportAlarmInfo } from '@/api/system'
 import { ChartPie, SimpleChartPie, ChartLine1, ChartLine2 } from '_c/charts'
 import { Tag } from 'iview'
 
@@ -170,13 +170,16 @@ export default {
     this.get_linux_stat(`tags=${this.$route.params.tags} `)
     this.get_linux_stat_his(`tags=${this.$route.params.tags} `)
     this.get_linux_disk(`tags=${this.$route.params.tags} `)
-    this.get_alarm_info(`tags=${this.$route.params.tags} `)
+    // this.get_alarm_info(`tags=${this.$route.params.tags} `)
+    this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=linux `)
+    // console.log('this.$route.params：', this.$route.params);
     this.Tags = this.$route.params.tags
     this.timer = setInterval(() => {
       this.get_linux_stat(`tags=${this.$route.params.tags} `)
       this.get_linux_stat_his(`tags=${this.$route.params.tags} `)
       this.get_linux_disk(`tags=${this.$route.params.tags} `)
-      this.get_alarm_info(`tags=${this.$route.params.tags} `)
+      // this.get_alarm_info(`tags=${this.$route.params.tags} `)
+      this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=linux `)
     }, 1000 * 60 * 2)
   },
   methods: {
@@ -236,11 +239,19 @@ export default {
         this.$Message.error(`获取linux磁盘信息错误 ${err}`)
       })
     },
-    get_alarm_info (parameter) {
-      getAlarmInfo(parameter).then(res => {
-        this.alarmData = res.data.results
-        this.count = res.data.count
-        console.log('this.alarmData的值是：', this.alarmData)
+    // get_alarm_info (parameter) {
+    //   getAlarmInfo(parameter).then(res => {
+    //     this.alarmData = res.data.results
+    //     this.count = res.data.count
+    //     console.log('this.alarmData的值是：', this.alarmData)
+    //   }).catch(err => {
+    //     this.$Message.error(`获取告警信息错误 ${err}`)
+    //   })
+    // },
+    get_export_alarm_info (parameter) {
+      getExportAlarmInfo(parameter).then(res => {
+            this.alarmData = res.data.results
+            this.count = res.data.count
       }).catch(err => {
         this.$Message.error(`获取告警信息错误 ${err}`)
       })
