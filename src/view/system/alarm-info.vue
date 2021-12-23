@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { getAlarmInfo, getExportAlarmInfo } from '@/api/system'
+import { getAlarmInfo, getExportAlarmInfo, getExcelAlarmInfo } from '@/api/system'
 import { hasOneOf, formatDate } from '@/libs/tools'
 import excel from '@/libs/excel'
 import { Button, Table, Modal, Message, Tag } from 'iview'
@@ -142,17 +142,24 @@ export default {
       // 初始化时默认查询当天告警信息
       if (parameter === undefined) {
         getExportAlarmInfo(`day=1`).then(res => {
-          this.exportData = res.data.results
-          this.data = this.exportData
+          // this.exportData = res.data.results
+          this.data = res.data.results
           this.count = res.data.count
         }).catch(err => {
           this.$Message.error(`获取告警信息错误！${err}`)
         })
+        getExcelAlarmInfo(`day=1`).then(res => {
+          // console.log('告警日志获取：', res);
+          this.exportData = res.data
+        }).catch(err => {
+          this.$Message.error(`导出告警信息错误！${err}`)
+        })
       } else {
         // 获取day=xx&page=xx的告警信息
         getExportAlarmInfo(parameter).then(res => {
-          this.exportData = res.data.results
-          this.data = this.exportData
+          // this.exportData = res.data.results
+          console.log('获取页码数的告警信息：', res);
+          this.data = res.data.results
           this.count = res.data.count
         }).catch(err => {
           this.$Message.error(`获取告警信息错误！${err}`)
@@ -163,11 +170,17 @@ export default {
     get_select_alarm_info (val) {
       this.day = val
       getExportAlarmInfo(`day=${val}`).then(res => {
-        this.exportData = res.data.results
-        this.data = this.exportData
+        // this.exportData = res.data.results
+        this.data = res.data.results
         this.count = res.data.count
       }).catch(err => {
         this.$Message.error(`获取告警信息错误！${err}`)
+      })
+      getExcelAlarmInfo(`day=${val}`).then(res => {
+        console.log('告警日志获取：', res);
+        this.exportData = res.data
+      }).catch(err => {
+        this.$Message.error(`导出告警信息错误！${err}`)
       })
     },
     // 页码跳转的事件处理

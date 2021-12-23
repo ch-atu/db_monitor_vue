@@ -44,6 +44,13 @@ export const getExportAlarmInfo = parameter => {
   })
 }
 
+export const getExcelAlarmInfo = parameter => {
+  return axios.request({
+    url: `/system/api/excel-alarm-info?${parameter}`,
+    method: 'get'
+  })
+}
+
 export const setupMysql = data => {
   return axios.request({
     url: '/system/api/mysql-setup',
