@@ -214,16 +214,16 @@ export default {
       })
     },
     get_linux_stat_his (parameter) {
-      console.log('get_linux_stat_his被调用');
+      console.log('get_linux_stat_his被调用')
       getLinuxStatHis(parameter).then(res => {
         this.linuxinfoList = res.data.results
         // this.checktimeData = this.linuxinfoList.map(linux => linux.check_time)
         this.checktimeData = this.linuxinfoList.map(
           linux => {
-            console.log('linux.check_time的值是：', linux.check_time);
+            console.log('linux.check_time的值是：', linux.check_time)
             return formatDate(new Date(linux.check_time), 'yyyy-MM-dd hh:mm')
           })
-        console.log('this.checktimeData:的值是：', this.checktimeData);
+        console.log('this.checktimeData:的值是：', this.checktimeData)
         this.cpuData = this.linuxinfoList.map(linux => linux.cpu_used)
         this.memData = this.linuxinfoList.map(linux => linux.mem_used)
         this.readmbData = this.linuxinfoList.map(linux => linux.read_mb)
@@ -250,8 +250,8 @@ export default {
     // },
     get_export_alarm_info (parameter) {
       getExportAlarmInfo(parameter).then(res => {
-            this.alarmData = res.data.results
-            this.count = res.data.count
+        this.alarmData = res.data.results
+        this.count = res.data.count
       }).catch(err => {
         this.$Message.error(`获取告警信息错误 ${err}`)
       })

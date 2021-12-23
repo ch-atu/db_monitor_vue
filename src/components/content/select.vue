@@ -11,7 +11,7 @@ export default {
         {
           value: '1',
           label: '今天'
-        },{
+        }, {
           value: '-1',
           label: '昨天'
         },
@@ -22,23 +22,22 @@ export default {
         {
           value: '-30',
           label: '最近一个月'
-        },{
+        }, {
           value: '-365',
           label: '最近一年'
-        },
+        }
       ],
       model8: ''
     }
   },
-  methods:{
-    change_select(val){
-      console.log(val);
+  methods: {
+    change_select (val) {
+      console.log(val)
       this.$emit('change_select', Number(val))
     }
   }
 }
 </script>
-
 
 <style scoped>
 

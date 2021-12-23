@@ -129,15 +129,15 @@ export default {
     //       this.$Message.error(`获取告警信息错误 ${err}`)
     //     })
     // },
-    get_export_alarm_info(){
+    get_export_alarm_info () {
       // 初始化时默认查询当天告警信息
-        getExportAlarmInfo(`day=1`).then(res => {
-          this.alarminfoList = res.data.results
-          this.alarm_count = res.data.count
-        }).catch(err => {
-          this.$Message.error(`获取告警信息错误！${err}`)
-        })
-      },
+      getExportAlarmInfo(`day=1`).then(res => {
+        this.alarminfoList = res.data.results
+        this.alarm_count = res.data.count
+      }).catch(err => {
+        this.$Message.error(`获取告警信息错误！${err}`)
+      })
+    },
     get_linux_stat_list (parameter) {
       getLinuxStatList(parameter)
         .then((res) => {

@@ -84,7 +84,7 @@ import { RedisMenu } from '_c/top-menu'
 import InforCard from '_c/info-card'
 import { CountTo, CountToInt } from '_c/count-to'
 import { getRedisStat, getRedisStatHis } from '@/api/redis'
-import { getAlarmInfo, getExportAlarmInfo} from '@/api/system'
+import { getAlarmInfo, getExportAlarmInfo } from '@/api/system'
 import { ChartPie, SimpleChartPie, ChartLine1, ChartLine2, ChartLine3, ChartLine4 } from '_c/charts'
 
 export default {

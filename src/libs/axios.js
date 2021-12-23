@@ -38,6 +38,7 @@ class HttpRequest {
   }
   interceptors (instance, url) {
     // 请求拦截
+    // console.log('interceptors的url:', url);
     instance.interceptors.request.use(config => {
       // 添加全局的loading...
       if (!Object.keys(this.queue).length) {
@@ -69,6 +70,7 @@ class HttpRequest {
     })
   }
   request (options) {
+    // console.log('options:',options)
     const instance = axios.create()
     options = Object.assign(this.getInsideConfig(), options)
     this.interceptors(instance, options.url)

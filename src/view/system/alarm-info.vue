@@ -32,7 +32,7 @@ import { Button, Table, Modal, Message, Tag } from 'iview'
 
 import daySelect from '_c/content'
 export default {
-  components:{
+  components: {
     // 增加日期选择器
     daySelect
   },
@@ -87,10 +87,10 @@ export default {
         position: 'static'
       },
       updateId: null,
-      //新增导入文件
+      // 新增导入文件
       exportLoading: false,
-      exportData:null,
-      day:1,
+      exportData: null,
+      day: 1
 
     }
   },
@@ -138,21 +138,20 @@ export default {
       }
     },
     // 初始化时默认查询当天告警信息 或 获取day=xx&page=xx的告警信息
-    get_export_alarm_info(parameter){
+    get_export_alarm_info (parameter) {
       // 初始化时默认查询当天告警信息
-      if (parameter===undefined){
+      if (parameter === undefined) {
         getExportAlarmInfo(`day=1`).then(res => {
-          this.exportData = res.data.results;
+          this.exportData = res.data.results
           this.data = this.exportData
           this.count = res.data.count
         }).catch(err => {
           this.$Message.error(`获取告警信息错误！${err}`)
         })
-      }
-      else{
+      } else {
         // 获取day=xx&page=xx的告警信息
         getExportAlarmInfo(parameter).then(res => {
-          this.exportData = res.data.results;
+          this.exportData = res.data.results
           this.data = this.exportData
           this.count = res.data.count
         }).catch(err => {
@@ -161,11 +160,11 @@ export default {
       }
     },
     // 查询选择日期的告警信息
-    get_select_alarm_info(val){
+    get_select_alarm_info (val) {
       this.day = val
       getExportAlarmInfo(`day=${val}`).then(res => {
-        this.exportData = res.data.results;
-        this.data=this.exportData
+        this.exportData = res.data.results
+        this.data = this.exportData
         this.count = res.data.count
       }).catch(err => {
         this.$Message.error(`获取告警信息错误！${err}`)
@@ -174,8 +173,8 @@ export default {
     // 页码跳转的事件处理
     get_export_alarm_info_page (parameter) {
       this.get_export_alarm_info(`day=${this.day}&page=${parameter}`)
-    },
-  },
+    }
+  }
 }
 </script>
 <style scoped>
