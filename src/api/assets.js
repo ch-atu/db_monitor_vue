@@ -30,6 +30,13 @@ export const deleteMysql = id => {
   })
 }
 
+export const deleteMysqlStat = host => {
+  return axios.request({
+    url: `/mysql/api/del_mysql_stat/${host}`,
+    method: 'delete'
+  })
+}
+
 export const getLinuxList = parameter => {
   return axios.request({
     url: `/assets/api/linux?${parameter}`,
@@ -95,6 +102,13 @@ export const updateRedis = (id, data) => {
 export const deleteRedis = id => {
   return axios.request({
     url: `/assets/api/redis/${id}`,
+    method: 'delete'
+  })
+}
+
+export const deleteRedisStat = host => {
+  return axios.request({
+    url: `/rds/api/del_redis_stat/${host}`,
     method: 'delete'
   })
 }

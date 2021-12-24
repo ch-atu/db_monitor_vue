@@ -266,7 +266,7 @@
 </template>
 
 <script>
-import { getMysqlList, getLinuxList, createMysql, updateMysql, deleteMysql } from '@/api/assets'
+import { getMysqlList, getLinuxList, createMysql, updateMysql, deleteMysql, deleteMysqlStat } from '@/api/assets'
 import { hasOneOf } from '@/libs/tools'
 import { Tag } from 'iview'
 export default {
@@ -340,6 +340,7 @@ export default {
           width: 200,
           align: 'center',
           render: (h, params) => {
+            console.log('mysql操作中的params值为：', params);
             return h('div', [
               h('Button', {
                 props: {
@@ -382,7 +383,7 @@ export default {
                 },
                 on: {
                   'on-ok': () => {
-                    this.remove(params.index, params.row.id)
+                    this.remove(params.index, params.row.id, params.row.host)
                   }
                 }
               }, [h('Button', {
@@ -582,10 +583,13 @@ export default {
       this.formData.alarm_repl = '1'
       this.formData.alarm_alert_log = '1'
     },
-    remove (index, id) {
-      console.log(index, id)
+    remove (index, id, host) {
+      console.log('mysql要删除的index, id, host', index, id, host)
       deleteMysql(id).then(res => {
-        console.log(res)
+        console.log('删除成功mysqlList的返回值：', res)
+        deleteMysqlStat(host).then(res => {
+          console.log('删除mysqlStat成功后返回的res：', res);
+        })
         this.$Message.success('删除MySQL配置成功!')
         this.data.splice(index, 1)
       }).catch(err => {

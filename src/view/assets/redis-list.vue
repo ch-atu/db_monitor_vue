@@ -194,7 +194,7 @@
 </template>
 
 <script>
-import { getRedisList, getLinuxList, createRedis, updateRedis, deleteRedis } from '@/api/assets'
+import { getRedisList, getLinuxList, createRedis, updateRedis, deleteRedis, deleteRedisStat } from '@/api/assets'
 import { hasOneOf } from '@/libs/tools'
 import { Tag } from 'iview'
 export default {
@@ -256,6 +256,7 @@ export default {
           width: 200,
           align: 'center',
           render: (h, params) => {
+            console.log('redis删除操作传来的params值为：', params);
             return h('div', [
               h('Button', {
                 props: {
@@ -298,7 +299,7 @@ export default {
                 },
                 on: {
                   'on-ok': () => {
-                    this.remove(params.index, params.row.id)
+                    this.remove(params.index, params.row.id, params.row.host)
                   }
                 }
               }, [h('Button', {
@@ -473,10 +474,13 @@ export default {
       this.formData.alarm_connect = '1'
       this.formData.alarm_alert_log = '1'
     },
-    remove (index, id) {
-      console.log(index, id)
+    remove (index, id, host) {
+      console.log('redis中要删除的index，id，host为:',index, id, host)
       deleteRedis(id).then(res => {
-        console.log(res)
+        console.log('删除成功redisList的返回值', res)
+        deleteRedisStat(host).then(res => {
+          console.log('删除成功redisStat的返回值', res)
+        })
         this.$Message.success('删除Redis配置成功!')
         this.data.splice(index, 1)
       }).catch(err => {

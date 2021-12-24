@@ -592,7 +592,7 @@ export default {
       this.formData.alarm_alert_log = '1'
     },
     remove (index, id, host) {
-      console.log(index, id, host)
+      console.log('要删除的index，id，host：', index, id, host)
       deleteLinux(id).then(res => {
         console.log('deleteLinux:', res)
         deleteLinuxStat(host).then(res => {
