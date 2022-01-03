@@ -192,6 +192,7 @@ export const canTurnTo = (name, access, routes) => {
       }
     })
   }
+  // 判断用户是否有权限
   let result = routePermissionJudge(routes)
   console.log('result的值是：',result);
   return result

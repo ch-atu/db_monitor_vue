@@ -4,12 +4,12 @@
       <Row>
         <Button @click="add"
                 v-if="addAccessAll"
-                type="primary">添加</Button>&nbsp;
+                type="primary">添加</Button>&nbsp
         <Input v-model="host_search"
                placeholder="ip地址"
-               style="width: 100px" />&nbsp;
+               style="width: 100px" />&nbsp
         <Button @click="search"
-                type="primary">搜索</Button>&nbsp;
+                type="primary">搜索</Button>&nbsp
         <Button @click="clear_search"
                 type="success">刷新</Button>
       </Row>
@@ -42,207 +42,207 @@
             <Alert show-icon>Linux主机配置</Alert>
             <Row :gutter="32">
               <Col span="6">
-              <FormItem label="标签"
-                        label-position="top"
-                        prop="tags">
-                <Input v-model="formData.tags"
-                       placeholder="自定义唯一标签" />
-              </FormItem>
+                <FormItem label="标签"
+                          label-position="top"
+                          prop="tags">
+                  <Input v-model="formData.tags"
+                         placeholder="自定义唯一标签" />
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="ip地址"
-                        label-position="top"
-                        prop="host">
-                <Input v-model="formData.host"
-                       placeholder="请填写ip地址" />
-              </FormItem>
+                <FormItem label="ip地址"
+                          label-position="top"
+                          prop="host">
+                  <Input v-model="formData.host"
+                         placeholder="请填写ip地址" />
+                </FormItem>
               </Col>
               <Col span="4">
-              <FormItem label="主机名"
-                        label-position="top"
-                        prop="hostname">
-                <Input v-model="formData.hostname"
-                       placeholder="主机名">
-                </Input>
-              </FormItem>
+                <FormItem label="主机名"
+                          label-position="top"
+                          prop="hostname">
+                  <Input v-model="formData.hostname"
+                         placeholder="主机名">
+                  </Input>
+                </FormItem>
               </Col>
             </Row>
             <Row :gutter="32">
               <Col span="8">
-              <FormItem label="Linux版本"
-                        label-position="top"
-                        prop="db_version">
-                <Select v-model="formData.linux_version"
-                        placeholder="">
-                  <Option value="Linux6">Linux6</Option>
-                  <Option value="Linux7">Linux7</Option>
-                </Select>
-              </FormItem>
+                <FormItem label="Linux版本"
+                          label-position="top"
+                          prop="db_version">
+                  <Select v-model="formData.linux_version"
+                          placeholder="">
+                    <Option value="Linux6">Linux6</Option>
+                    <Option value="Linux7">Linux7</Option>
+                  </Select>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="内核版本"
-                        label-position="top"
-                        prop="db_version">
-                <Input v-model="formData.linux_kernel"
-                       placeholder="内核">
-                </Input>
-              </FormItem>
+                <FormItem label="内核版本"
+                          label-position="top"
+                          prop="db_version">
+                  <Input v-model="formData.linux_kernel"
+                         placeholder="内核">
+                  </Input>
+                </FormItem>
               </Col>
             </Row>
             <Alert show-icon>操作系统配置</Alert>
             <Row :gutter="32">
               <Col span="6">
-              <FormItem label="操作系统用户名"
-                        label-position="top"
-                        prop="user">
-                <Input v-model="formData.user"
-                             placeholder="操作系统用户名">
-                </Input>
-              </FormItem>
+                <FormItem label="操作系统用户名"
+                          label-position="top"
+                          prop="user">
+                  <Input v-model="formData.user"
+                         placeholder="操作系统用户名">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="操作系统用户密码"
-                        label-position="top"
-                        prop="password">
-                <Input type="password" v-model="formData.password"
-                             placeholder="操作系统用户密码">
-                </Input>
-              </FormItem>
+                <FormItem label="操作系统用户密码"
+                          label-position="top"
+                          prop="password">
+                  <Input type="password" v-model="formData.password"
+                         placeholder="操作系统用户密码">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="操作系统ssh端口号"
-                        label-position="top"
-                        prop="sshport">
-                <InputNumber v-model="formData.sshport"
-                             placeholder="操作系统ssh端口号">
-                </InputNumber>
-              </FormItem>
+                <FormItem label="操作系统ssh端口号"
+                          label-position="top"
+                          prop="sshport">
+                  <InputNumber v-model="formData.sshport"
+                               placeholder="操作系统ssh端口号">
+                  </InputNumber>
+                </FormItem>
               </Col>
             </Row>
             <Alert show-icon>机房信息</Alert>
             <Row :gutter="32">
               <Col span="6">
-              <FormItem label="序列号"
-                        label-position="top"
-                        prop="serialno">
-                <Input v-model="formData.serialno"
-                       placeholder="序列号">
-                </Input>
-              </FormItem>
+                <FormItem label="序列号"
+                          label-position="top"
+                          prop="serialno">
+                  <Input v-model="formData.serialno"
+                         placeholder="序列号">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="4">
-              <FormItem label="状态"
-                        label-position="top"
-                        prop="status">
-                <Select v-model="formData.status"
-                        placeholder="">
-                  <Option value="0">在线</Option>
-                  <Option value="1">备用</Option>
-                  <Option value="2">下线</Option>
-                  <Option value="3">待用</Option>
-                  <Option value="4">维修</Option>
-                  <Option value="5">重装</Option>
-                </Select>
-              </FormItem>
+                <FormItem label="状态"
+                          label-position="top"
+                          prop="status">
+                  <Select v-model="formData.status"
+                          placeholder="">
+                    <Option value="0">在线</Option>
+                    <Option value="1">备用</Option>
+                    <Option value="2">下线</Option>
+                    <Option value="3">待用</Option>
+                    <Option value="4">维修</Option>
+                    <Option value="5">重装</Option>
+                  </Select>
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="机柜"
-                        label-position="top"
-                        prop="cabinet">
-                <Input v-model="formData.cabinet"
-                       placeholder="机柜">
-                </Input>
-              </FormItem>
+                <FormItem label="机柜"
+                          label-position="top"
+                          prop="cabinet">
+                  <Input v-model="formData.cabinet"
+                         placeholder="机柜">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="服务器厂家"
-                        label-position="top"
-                        prop="factory">
-                <Input v-model="formData.factory"
-                       placeholder="服务器厂家">
-                </Input>
-              </FormItem>
+                <FormItem label="服务器厂家"
+                          label-position="top"
+                          prop="factory">
+                  <Input v-model="formData.factory"
+                         placeholder="服务器厂家">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="采购日期"
-                        label-position="top"
-                        prop="purchase_date">
-                <DatePicker v-model="formData.purchase_date" value="yyyymmdd" type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
-              </FormItem>
+                <FormItem label="采购日期"
+                          label-position="top"
+                          prop="purchase_date">
+                  <DatePicker v-model="formData.purchase_date" value="yyyymmdd" type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="保修开始日期"
-                        label-position="top"
-                        prop="beginprotection_date">
-                <DatePicker v-model="formData.beginprotection_date"  type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
-              </FormItem>
+                <FormItem label="保修开始日期"
+                          label-position="top"
+                          prop="beginprotection_date">
+                  <DatePicker v-model="formData.beginprotection_date"  type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="过保日期"
-                        label-position="top"
-                        prop="overprotection_date">
-                <DatePicker v-model="formData.overprotection_date" type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
-              </FormItem>
+                <FormItem label="过保日期"
+                          label-position="top"
+                          prop="overprotection_date">
+                  <DatePicker v-model="formData.overprotection_date" type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
+                </FormItem>
               </Col>
             </Row>
             <Alert show-icon>服务器描述</Alert>
             <Row :gutter="32">
               <Col span="4">
-              <FormItem label="业务系统"
-                        label-position="top"
-                        prop="bussiness_system">
-                <Input v-model="formData.bussiness_system"
-                       placeholder="归属系统">
-                </Input>
-              </FormItem>
+                <FormItem label="业务系统"
+                          label-position="top"
+                          prop="bussiness_system">
+                  <Input v-model="formData.bussiness_system"
+                         placeholder="归属系统">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="4">
-              <FormItem label="系统等级"
-                        label-position="top"
-                        prop="db_version">
-                <Select v-model="formData.system_level"
-                        placeholder="">
-                  <Option value="0">核心系统</Option>
-                  <Option value="1">重要系统</Option>
-                  <Option value="2">一般系统</Option>
-                </Select>
-              </FormItem>
+                <FormItem label="系统等级"
+                          label-position="top"
+                          prop="db_version">
+                  <Select v-model="formData.system_level"
+                          placeholder="">
+                    <Option value="0">核心系统</Option>
+                    <Option value="1">重要系统</Option>
+                    <Option value="2">一般系统</Option>
+                  </Select>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="服务器描述"
-                        label-position="top"
-                        prop="res_description">
-                <Input v-model="formData.res_description"
-                       placeholder="服务器描述">
-                </Input>
-              </FormItem>
+                <FormItem label="服务器描述"
+                          label-position="top"
+                          prop="res_description">
+                  <Input v-model="formData.res_description"
+                         placeholder="服务器描述">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="主要部署软件"
-                        label-position="top"
-                        prop="main_software">
-                <Input v-model="formData.main_software"
-                       placeholder="主要部署软件">
-                </Input>
-              </FormItem>
+                <FormItem label="主要部署软件"
+                          label-position="top"
+                          prop="main_software">
+                  <Input v-model="formData.main_software"
+                         placeholder="主要部署软件">
+                  </Input>
+                </FormItem>
               </Col>
             </Row>
             <Alert show-icon>告警配置</Alert>
             <Row :gutter="32">
               <div>
-            <Form class="step-form" :label-width="100">
-              <FormItem label="选择告警配置">
-                <CheckboxGroup>
-                  <Checkbox v-model="formData.alarm_connect" true-value="1" false-value="0" label="Linux主机通断告警"></Checkbox>
-                  <Checkbox v-model="formData.alarm_cpu" true-value="1" false-value="0" label="cpu使用率告警"></Checkbox>
-                  <Checkbox v-model="formData.alarm_mem" true-value="1" false-value="0" label="内存使用率告警"></Checkbox>
-                  <Checkbox v-model="formData.alarm_swap" true-value="1" false-value="0"  label="swap使用率告警"></Checkbox>
-                  <Checkbox v-model="formData.alarm_disk" true-value="1" false-value="0"  label="磁盘使用率告警"></Checkbox>
-                  <Checkbox v-model="formData.alarm_alert_log" true-value="1" false-value="0"  label="后台日志告警"></Checkbox>
-                </CheckboxGroup>
-              </FormItem>
-            </Form>
-          </div>
+                <Form class="step-form" :label-width="100">
+                  <FormItem label="选择告警配置">
+                    <CheckboxGroup>
+                      <Checkbox v-model="formData.alarm_connect" true-value="1" false-value="0" label="Linux主机通断告警"></Checkbox>
+                      <Checkbox v-model="formData.alarm_cpu" true-value="1" false-value="0" label="cpu使用率告警"></Checkbox>
+                      <Checkbox v-model="formData.alarm_mem" true-value="1" false-value="0" label="内存使用率告警"></Checkbox>
+                      <Checkbox v-model="formData.alarm_swap" true-value="1" false-value="0"  label="swap使用率告警"></Checkbox>
+                      <Checkbox v-model="formData.alarm_disk" true-value="1" false-value="0"  label="磁盘使用率告警"></Checkbox>
+                      <Checkbox v-model="formData.alarm_alert_log" true-value="1" false-value="0"  label="后台日志告警"></Checkbox>
+                    </CheckboxGroup>
+                  </FormItem>
+                </Form>
+              </div>
             </Row>
           </Form>
           <div class="demo-drawer-footer" v-show="showfooter" >
@@ -256,20 +256,20 @@
       </Row>
 
       <Modal width="80"
-        v-model="webssh"
-        title="Common Modal dialog box title"
-        @on-ok="ok_webssh"
-        @on-cancel="cancel_webssh">
+             v-model="webssh"
+             title="Common Modal dialog box title"
+             @on-ok="ok_webssh"
+             @on-cancel="cancel_webssh">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-              <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-              <p>Content of dialog</p>
         <p>Content of dialog</p>
         <p>Content of dialog</p>
-    </Modal>
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+      </Modal>
     </Card>
   </Row>
 </template>
@@ -533,9 +533,9 @@ export default {
               this.get_linux_list()
               this.create = false
             }).catch(err => {
-              console.log('err.response:',err.response)
+              console.log(err.response)
               this.$Message.error({
-                content: `新增linux配置错误:${Object.entries(err.response.data)}`,
+                content: `新增linux配置错误 ${Object.entries(err.response.data)}`,
                 duration: 10,
                 closable: true
               })
@@ -550,7 +550,7 @@ export default {
             }).catch(err => {
               console.log(err.response)
               this.$Message.error({
-                content: `更新linux配置错误:${Object.entries(err.response.data)}`,
+                content: `更新linux配置错误 ${Object.entries(err.response.data)}`,
                 duration: 10,
                 closable: true
               })
