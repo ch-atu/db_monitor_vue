@@ -32,7 +32,7 @@
 
 <!--      添加相关操作-->
       <Row>
-        <Drawer title="Linux主机配置"
+        <Drawer title="Windows主机配置"
                 v-model="create"
                 width="720"
                 :mask-closable="this.close"
@@ -40,7 +40,8 @@
           <Form ref="formData"
                 :model="formData"
                 :rules="ruleValidate">
-            <Alert show-icon>Linux主机配置</Alert>
+
+            <Alert show-icon>Windows主机配置</Alert>
             <Row :gutter="32">
               <Col span="6">
                 <FormItem label="标签"
@@ -70,13 +71,14 @@
             </Row>
             <Row :gutter="32">
               <Col span="8">
-                <FormItem label="Linux版本"
+                <FormItem label="Windows版本"
                           label-position="top"
                           prop="db_version">
-                  <Select v-model="formData.linux_version"
-                          placeholder="">
-                    <Option value="Linux6">Linux6</Option>
-                    <Option value="Linux7">Linux7</Option>
+                  <Select v-model="formData.windows_version"
+                          placeholder="请选择Windows版本">
+                    <Option value="Windows7">Windows7</Option>
+                    <Option value="Windows8">Windows8</Option>
+                    <Option value="Windows10">Windows10</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -90,6 +92,7 @@
                 </FormItem>
               </Col>
             </Row>
+
             <Alert show-icon>操作系统配置</Alert>
             <Row :gutter="32">
               <Col span="6">
@@ -120,6 +123,7 @@
                 </FormItem>
               </Col>
             </Row>
+
             <Alert show-icon>机房信息</Alert>
             <Row :gutter="32">
               <Col span="6">
@@ -186,6 +190,7 @@
                 </FormItem>
               </Col>
             </Row>
+
             <Alert show-icon>服务器描述</Alert>
             <Row :gutter="32">
               <Col span="4">
@@ -234,11 +239,11 @@
                 <Form class="step-form" :label-width="100">
                   <FormItem label="选择告警配置">
                     <CheckboxGroup>
-                      <Checkbox v-model="formData.alarm_connect" true-value="1" false-value="0" label="Linux主机通断告警"></Checkbox>
+                      <Checkbox v-model="formData.alarm_connect" true-value="1" false-value="0" label="Windows主机通断告警"></Checkbox>
                       <Checkbox v-model="formData.alarm_cpu" true-value="1" false-value="0" label="cpu使用率告警"></Checkbox>
                       <Checkbox v-model="formData.alarm_mem" true-value="1" false-value="0" label="内存使用率告警"></Checkbox>
                       <!--                      todo 暂时不用-->
-                      <!--                      <Checkbox v-model="formData.alarm_swap" true-value="1" false-value="0"  label="swap使用率告警"></Checkbox>-->
+<!--                      <Checkbox v-model="formData.alarm_swap" true-value="1" false-value="0"  label="swap使用率告警"></Checkbox>-->
 <!--                      <Checkbox v-model="formData.alarm_disk" true-value="1" false-value="0"  label="磁盘使用率告警"></Checkbox>-->
 <!--                      <Checkbox v-model="formData.alarm_alert_log" true-value="1" false-value="0"  label="后台日志告警"></Checkbox>-->
                     </CheckboxGroup>
@@ -432,27 +437,37 @@ export default {
         tags: '',
         host: '',
         hostname: '',
-        linux_version: 'Linux6',
+        windows_version: 'Windows7',
         user: '',
         password: '',
         sshport: 22,
+        // 序列号
         serialno: '',
         status: '0',
+        // 机柜
         cabinet: '',
+        // 服务器厂家
         factory: '',
+        // 采购日期
         purchase_date: '',
+        // 保修开始日期
         beginprotection_date: '',
+        // 保修结束日期
         overprotection_date: '',
+        // 业务系统
         bussiness_system: '',
         system_level: '0',
+        // 服务器描述
         res_description: '',
+        // 主要软件
         main_software: '',
         alarm_connect: '',
         alarm_cpu: '',
         alarm_mem: '',
-        alarm_swap: '',
-        alarm_disk: '',
-        alarm_alert_log: ''
+        // todo 暂时不用
+        // alarm_swap: '',
+        // alarm_disk: '',
+        // alarm_alert_log: ''
       },
       ruleValidate: {
         tags: [
@@ -527,21 +542,24 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
+          // 新增
           if (!this.updateId) {
             createLinux(this.formData).then(res => {
               console.log(res)
-              this.$Message.success('新增linux配置成功!')
+              this.$Message.success('新增windows配置成功!')
               this.get_linux_list()
               this.create = false
             }).catch(err => {
               console.log(err.response)
               this.$Message.error({
-                content: `新增linux配置错误 ${Object.entries(err.response.data)}`,
+                content: `新增windows配置错误 ${Object.entries(err.response.data)}`,
                 duration: 10,
                 closable: true
               })
             })
-          } else {
+          }
+          // 修改
+          else {
             console.log(this.updateId)
             updateLinux(this.updateId, this.formData).then(res => {
               console.log(res)
@@ -557,7 +575,9 @@ export default {
               })
             })
           }
-        } else {
+        }
+        // 校验错误
+        else {
           this.$Message.error('错误!')
         }
       })
@@ -589,9 +609,10 @@ export default {
       this.formData.alarm_connect = '1'
       this.formData.alarm_cpu = '1'
       this.formData.alarm_mem = '1'
-      this.formData.alarm_swap = '1'
-      this.formData.alarm_disk = '1'
-      this.formData.alarm_alert_log = '1'
+      // todo 暂时不用
+      // this.formData.alarm_swap = '1'
+      // this.formData.alarm_disk = '1'
+      // this.formData.alarm_alert_log = '1'
     },
     remove (index, id, host) {
       console.log('要删除的index，id，host：', index, id, host)
@@ -612,6 +633,7 @@ export default {
       })
     },
     update (index) {
+      this.updateId = this.data[index].id
       this.create = true
       this.showfooter = true
       this.close = false
@@ -637,10 +659,10 @@ export default {
       this.formData.alarm_connect = String(this.data[index].alarm_connect)
       this.formData.alarm_cpu = String(this.data[index].alarm_cpu)
       this.formData.alarm_mem = String(this.data[index].alarm_mem)
-      this.formData.alarm_swap = String(this.data[index].alarm_swap)
-      this.formData.alarm_disk = String(this.data[index].alarm_disk)
-      this.formData.alarm_alert_log = String(this.data[index].alarm_alert_log)
-      this.updateId = this.data[index].id
+      // todo 暂时不用
+      // this.formData.alarm_swap = String(this.data[index].alarm_swap)
+      // this.formData.alarm_disk = String(this.data[index].alarm_disk)
+      // this.formData.alarm_alert_log = String(this.data[index].alarm_alert_log)
     }
   }
 }
