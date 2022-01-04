@@ -237,9 +237,10 @@
                       <Checkbox v-model="formData.alarm_connect" true-value="1" false-value="0" label="Linux主机通断告警"></Checkbox>
                       <Checkbox v-model="formData.alarm_cpu" true-value="1" false-value="0" label="cpu使用率告警"></Checkbox>
                       <Checkbox v-model="formData.alarm_mem" true-value="1" false-value="0" label="内存使用率告警"></Checkbox>
-                      <Checkbox v-model="formData.alarm_swap" true-value="1" false-value="0"  label="swap使用率告警"></Checkbox>
-                      <Checkbox v-model="formData.alarm_disk" true-value="1" false-value="0"  label="磁盘使用率告警"></Checkbox>
-                      <Checkbox v-model="formData.alarm_alert_log" true-value="1" false-value="0"  label="后台日志告警"></Checkbox>
+                      <!--                      todo 暂时不用-->
+                      <!--                      <Checkbox v-model="formData.alarm_swap" true-value="1" false-value="0"  label="swap使用率告警"></Checkbox>-->
+<!--                      <Checkbox v-model="formData.alarm_disk" true-value="1" false-value="0"  label="磁盘使用率告警"></Checkbox>-->
+<!--                      <Checkbox v-model="formData.alarm_alert_log" true-value="1" false-value="0"  label="后台日志告警"></Checkbox>-->
                     </CheckboxGroup>
                   </FormItem>
                 </Form>
@@ -525,7 +526,6 @@ export default {
     },
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
-        console.log()
         if (valid) {
           if (!this.updateId) {
             createLinux(this.formData).then(res => {

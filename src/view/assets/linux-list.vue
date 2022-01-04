@@ -238,7 +238,8 @@
                   <Checkbox v-model="formData.alarm_mem" true-value="1" false-value="0" label="内存使用率告警"></Checkbox>
                   <Checkbox v-model="formData.alarm_swap" true-value="1" false-value="0"  label="swap使用率告警"></Checkbox>
                   <Checkbox v-model="formData.alarm_disk" true-value="1" false-value="0"  label="磁盘使用率告警"></Checkbox>
-                  <Checkbox v-model="formData.alarm_alert_log" true-value="1" false-value="0"  label="后台日志告警"></Checkbox>
+                  <!--                      todo 暂时不用-->
+                  <!--                  <Checkbox v-model="formData.alarm_alert_log" true-value="1" false-value="0"  label="后台日志告警"></Checkbox>-->
                 </CheckboxGroup>
               </FormItem>
             </Form>
@@ -505,7 +506,7 @@ export default {
     },
     get_linux_list (parameter) {
       getLinuxList(parameter).then(res => {
-        console.log('查询的linux数据是：', res);
+        console.log('查询的linux数据是：', res)
         this.data = res.data.results
         this.count = res.data.count
         console.log('get_linux_list', this.data)
@@ -533,7 +534,7 @@ export default {
               this.get_linux_list()
               this.create = false
             }).catch(err => {
-              console.log('err.response:',err.response)
+              console.log('err.response:', err.response)
               this.$Message.error({
                 content: `新增linux配置错误:${Object.entries(err.response.data)}`,
                 duration: 10,
